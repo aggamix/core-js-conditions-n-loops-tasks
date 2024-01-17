@@ -21,8 +21,8 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  return number >= 0;
 }
 
 /**
@@ -38,8 +38,17 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  switch (true) {
+    case a > b && a > c:
+      return a;
+    case b > a && b > c:
+      return b;
+    case c > a && c > b:
+      return c;
+    default:
+      return a;
+  }
 }
 
 /**
@@ -100,8 +109,31 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const ROMAN_NUMERALS = [
+    'I',
+    'II',
+    'III',
+    'IV',
+    'V',
+    'VI',
+    'VII',
+    'VIII',
+    'IX',
+    'X',
+  ];
+  let STRING_NUM = Math.floor(num / 10);
+  let result = '';
+  if (num <= 10) {
+    result += ROMAN_NUMERALS[num - 1];
+  } else {
+    while (STRING_NUM !== 0) {
+      result += 'X';
+      STRING_NUM -= 1;
+    }
+    result += ROMAN_NUMERALS[(num % 10) - 1];
+  }
+  return result;
 }
 
 /**
