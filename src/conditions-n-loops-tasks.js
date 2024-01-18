@@ -151,8 +151,38 @@ function convertToRomanNumerals(num) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  const obj = {
+    0: 'zero',
+    1: 'one',
+    2: 'two',
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
+    7: 'seven',
+    8: 'eight',
+    9: 'nine',
+    ',': 'point',
+    '.': 'point',
+    '-': 'minus',
+    '+': 'plus',
+  };
+  let result = '';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    if (i !== 0 && i !== numberStr.length) result += ' ';
+    switch (numberStr[i]) {
+      case ',':
+      case '.':
+      case '-':
+      case '+':
+        result += obj[numberStr[i]];
+        break;
+      default:
+        result += obj[numberStr[i]];
+    }
+  }
+  return result;
 }
 
 /**
@@ -204,8 +234,12 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  const newNum = `${num}`;
+  for (let i = 0; i < newNum.length; i += 1) {
+    if (+newNum[i] === digit) return true;
+  }
+  return false;
 }
 
 /**
